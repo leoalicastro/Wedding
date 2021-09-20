@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header_home">
+                <h1 class="wese"><span class="wed">Wed</span><span class="se">Se</span></h1>
+                <div class="head_home_links">
+                    <a href="/my_account/{{this_user.id}}" class="index_link">Edit my account</a>
+                        {% if wedding_complete %}
+                            <a href="/wedding/{{ this_user.id }}" class="index_link">My wedding</a>
+                        {% else %}
+                            <a href="/create_wedding" class="index_link">Create wedding</a>
+                        {% endif %}
+                    <a href="/logout" class="index_link">Logout</a>
+                </div>
+            </div>
+            <div class="search">
+                <h2 class="find_couple_title">Find a couple's registry or wedding website</h2>
+                <form action="/search" method="POST">
+                    {% csrf_token %} 
+                    <input type="search" name="search" class="search_input" placeholder="Search by first name">
+                    <button type="submit" class="search_button">Search</button>
+                </form>
+                    {% if search %}
+                        You searched for {{ search }}
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

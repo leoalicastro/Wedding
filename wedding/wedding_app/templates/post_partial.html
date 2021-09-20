@@ -1,0 +1,18 @@
+{% for post in posts %}
+        {% if post.uploaded_by.id == user.id %}
+            <span class="poster">{{post.uploaded_by.fname}} {{post.uploaded_by.lname}}</span>
+                <br><span class="post">{{post.post}}</span>
+        {% endif %}
+
+        {% if post.uploaded_by.id == user.id and this_user not in post.liked_by.all %} 
+            <!-- <span class="thumbs_up"><br><i style="font-size:16px" class="fa">&#xf087;</i> -->
+            <!-- {{post.liked_by.all.count}}</span> -->
+            <br><a href="like_post/{{post.id}}/{{user.id}}"><i class="fa" style="font-size:18px">&#xf087;</i></a> {{post.liked_by.all.count}}
+            <hr>
+        {% endif %}
+        {% if post.uploaded_by.id == user.id and this_user in post.liked_by.all %}
+            <!-- <span class="thumbs_up"><br><i style="font-size:26px" class="fa fa-thumbs-up"></i>{</span> -->
+            <br><a href="unlike_post/{{post.id}}/{{user.id}}"><i class="fa fa-thumbs-up" style="font-size:18px"></i></a>  {{post.liked_by.all.count}}
+            <hr>
+        {% endif %}</p>
+{% endfor %}

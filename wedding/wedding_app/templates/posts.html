@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    <div id="posts_wrapper" class="wrapper">
+        <div class="container">
+            <div class="dheader">
+                {% for wedding in weddings %}
+                    {% if user.id == wedding.wedding_owner.id %}
+                        {{wedding.cdate|date:"F d, Y" }} |
+                        {{wedding.ccity}}, {{wedding.cstate}}
+            </div>
+            <h1 class="title">{{user.fname}} & {{wedding.sfname}}</h1>
+            <div class="links">
+                <p><a href="/wedding/{{user.id}}">Home</a>
+                <a href="/details/{{user.id}}">Details</a>
+                <a href = "/registry/{{user.id}}">Registry</a>
+                    <a href="/posts/{{user.id}}">Posts</a></p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <hr class="hr">
+            <div class="post_container">
+                <div class="posts">
+                    <div class="post_blocks">
+                        {% if this_user.id == user.id %}
+                        <form id="make_post" class="post_form" action="/make_post/{{user.id}}" method="POST">
+                            {% csrf_token %}
+                            <textarea class="post_input" name="post" placeholder="Post something about your wedding!"required></textarea>
+                            <input type="hidden" name="uploaded_by">
+                            <br><button class="post_button" id="post_button">Post</button>
+                            <hr>
+                        {% endif %}
+                        </form>
+                            <div id="posts_container">
+                                {% for post in posts %}                                    
+                                    {% if post.uploaded_by.id == user.id %}
+                                        <span class="poster">{{post.uploaded_by.fname}} {{post.uploaded_by.lname}}</span>
+                                        <br><span class="post">{{post.post}}</span>
+                                    {% endif %}
+                                    {% if post.uploaded_by.id == user.id and this_user not in post.liked_by.all %} 
+                                        <!-- <span class="thumbs_up"><br><i style="font-size:16px" class="fa">&#xf087;</i> -->
+                                        <!-- {{post.liked_by.all.count}}</span> -->
+                                        <br><a href="like_post/{{post.id}}/{{user.id}}" id="like_post"><i class="fa" style="font-size:18px">&#xf087;</i></a> {{post.liked_by.all.count}}
+                                        <hr>
+                                    {% endif %}
+                                    {% if post.uploaded_by.id == user.id and this_user in post.liked_by.all %}
+                                        <!-- <span class="thumbs_up"><br><i style="font-size:26px" class="fa fa-thumbs-up"></i>{</span> -->
+                                        <br><a href="unlike_post/{{post.id}}/{{user.id}}"><i class="fa fa-thumbs-up" style="font-size:18px"></i></a>  {{post.liked_by.all.count}}
+                                        <hr>
+                                    {% endif %}</p>
+                                {% endfor %}
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="footer_links">
+                {% for wedding in weddings %}
+                        {% if this_user.id == wedding.wedding_owner.id and user.id == wedding.wedding_owner.id %}
+                            <a href="/my_wedding/{{wedding.id}}" class="logout">Edit my wedding</a>
+                        {% endif %}
+                    {% endfor %}
+                <a href="/logout" class="logout">Logout</a>
+                <a href= "/home" class="home">Back to all wedding sites</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="dheader">
+                {% for wedding in weddings %}
+                    {% if user.id == wedding.wedding_owner.id %}
+                        {{wedding.cdate|date:"F d, Y" }} |
+                        {{wedding.ccity}}, {{wedding.cstate}}
+            </div>
+            <h1 class="title">{{user.fname}} & {{wedding.sfname}}</h1>
+            <div class="links">
+                <p><a href="/wedding/{{user.id}}">Home</a>
+                <a href="/details/{{user.id}}">Details</a>
+                <a href = "/registry/{{user.id}}">Registry</a>
+                    <a href="/posts/{{user.id}}">Posts</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <hr class="hr">
+    {% for wedding in weddings %}
+        {% if wedding.wedding_owner.id == user.id %}
+            <div class="recep_ceremony">
+                <div class="ceremony">
+                    <img class="detailimg" src="{% static "images/rings.png" %}" alt="Rings">
+                    <h2>Ceremony</h2>
+                        <p>{{wedding.cdate|date:"F d, Y" }} at {{wedding.ctime}}</p>
+                        <br><span class="detail_font">{{wedding.cvenue}}</span>
+                        <br>{{wedding.caddress}}
+                        <br>{{wedding.ccity}}, {{wedding.cstate}} {{wedding.czip}}
+                </div>
+                <div class="reception">
+                    <img class="detailimg" src="{% static "images/glasses.png" %}" alt="Champagne">    
+                    <h2>Reception</h2>
+                        <p>{{wedding.rdate|date:"F d, Y"}} at {{wedding.rtime}}</p>
+                        <br><span class="detail_font">{{wedding.rvenue}}</span>
+                        <br>{{wedding.raddress}}
+                        <br>{{wedding.rcity}}, {{wedding.rstate}} {{wedding.rzip}}
+                </div>
+                        {% if wedding.description != None %}    
+                            <p class="wedding_desc">{{wedding.description}}</p>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <hr>
+            <div class="footer_links">
+                {% for wedding in weddings %}
+                        {% if this_user.id == wedding.wedding_owner.id and user.id == wedding.wedding_owner.id %}
+                            <a href="/my_wedding/{{wedding.id}}" class="logout">Edit my wedding</a>
+                        {% endif %}
+                    {% endfor %}
+                <a href="/logout" class="logout">Logout</a>
+                <a href= "/home" class="home">Back to all wedding sites</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

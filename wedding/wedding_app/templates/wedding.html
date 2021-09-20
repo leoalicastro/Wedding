@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="dheader">
+                {% for wedding in weddings %}
+                    {% if user.id == wedding.wedding_owner.id %}
+                        {{wedding.cdate|date:"F d, Y" }} |
+                        {{wedding.ccity}}, {{wedding.cstate}}
+            </div>
+            <h1 class="title">{{user.fname}} & {{wedding.sfname}}</h1>
+            <div class="links">
+                <p><a href="/wedding/{{user.id}}">Home</a>
+                <a href="/details/{{user.id}}">Details</a>
+                <a href = "/registry/{{user.id}}">Registry</a>
+                    <a href="/posts/{{user.id}}">Posts</a>
+                    {% endif %}
+                {% endfor %}
+                <img class="weddingimg" src="{% static "images/couple.png" %}" alt="Couple pic">
+            </div>
+                {% for wedding in weddings %}
+                        {% if user.id == wedding.wedding_owner.id %}
+                            <h2 class="name">
+                                {{user.fname}} {{user.lname}} 
+                                <p class="pspace"><span class="and">And</span></p> 
+                                <p class="pspace">{{wedding.sfname}} {{wedding.slname}}</p>
+                            </h2>
+                            <h2 class="date">{{wedding.cdate|date:"F d, Y" }}</h2>
+                            <h3 class="location">{{wedding.ccity}}, {{wedding.cstate}}</h3>
+                        {% endif %}
+                {% endfor %}
+            <hr>
+            <div class="footer_links">
+            {% for wedding in weddings %}
+                    {% if this_user.id == wedding.wedding_owner.id and user.id == wedding.wedding_owner.id %}
+                        <a href="/my_wedding/{{wedding.id}}" class="logout">Edit my wedding</a>
+                    {% endif %}
+                {% endfor %}
+            <a href="/logout" class="logout">Logout</a>
+            <a href= "/home" class="home">Back to all wedding sites</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

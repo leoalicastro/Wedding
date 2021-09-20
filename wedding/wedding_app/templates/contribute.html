@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribute</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header_create_wed">
+                <h2 class="wese"><span class="wed">Wed</span><span class="se">Se</span></h2>
+                <div class="head_home_links">
+                    <a href="/home" class="home_link">Find a wedding</a>
+                        {% if wedding_complete %}
+                            <a href="/wedding/{{ this_user.id }}" class="home_link">My wedding</a>
+                        {% else %}
+                            <a href="/create_wedding" class="home_link">Create wedding</a>
+                        {% endif %}
+                    <a href="/logout" class="home_link">Logout</a>
+                </div>
+            </div>
+            <div class="create_wed_container">
+                <div class="create_wed">
+                    <h2 class="contribute_title">Contribute to {{registry.registry_owner.fname}}'s {{ registry.funame }} fund</h2>
+                    <br><span class="contribute_text">Total goal: ${{ registry.goal }}</span>
+                    <p><span class="contribute_text">Remaining Balance: ${{ registry.remaining_balance }}</span></p>
+                    {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                        <li class="error_message">{% if message.tags %} {{ message }} {% endif %}</li>
+                                    {% endfor %}
+                                </ul>
+                        {% endif %}
+                    <form class="create_wed_form" action ="/make_contribution/{{registry.id}}" method="POST">
+                        {% csrf_token %}
+                        <label for ="amount" class="cw_label">Amount</label>
+                        <br><input type ="number" name="amount" class="cw_input"required>
+                        <p><label for ="card_type" class="cw_label">Card type</label>
+                        <br><select id="credit_card_choices" class="cw_input" name="credit_card_choices">
+                            <option value="vi">Visa</option>
+                            <option value="am">American Express</option>
+                            <option value="mc">Mastercard</option>
+                            <option value="di">Discover</option></select></p>
+                        <p><label for ="cardholder_name" class="cw_label">Cardholder name</label>
+                        <br><input type ="text" class="cw_input" name="cardholder_name" required></p>
+                        <p><label for ="card_number" class="cw_label">Card number</label>
+                        <br><input type ="number" class="cw_input" name="card_number" required></p>
+                        <p><label for ="card_date" class="cw_label">Expiration date</label>
+                        <br><input type ="date" class="cw_input" name="card_date" required></p>
+                        <p><label for ="card_zip" class="cw_label">Zip Code</label>
+                        <br><input type ="number" class="cw_input" name="card_zip" required></p>
+                        <p><label for ="message" class="cw_label">Message to the newly weds</label>
+                        <br><textarea name="message" class="message_input" placeholder="Your message will be emailed to the happy couple on their wedding day."></textarea>
+                        <p><button class="contribute_next_button">Contribute!</button></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

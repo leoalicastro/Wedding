@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header_home">
+                <h2 class="wese"><span class="wed">Wed</span><span class="se">Se</span></h2>
+                <div class="head_home_links">
+                    <a href="/my_account/{{this_user.id}}" class="home_link">Edit my account</a>
+                        {% if wedding_complete %}
+                            <a href="/wedding/{{ this_user.id }}" class="home_link">My wedding</a>
+                                {% else %}
+                            <a href="/create_wedding" class="home_link">Create wedding</a>
+                        {% endif %}
+                    <a href="/logout" class="home_link">Logout</a>
+                </div>
+            </div>
+            <div class="search">
+                <h2 class="find_couple_title">Find a couple's registry or wedding website</h2>
+                <form action="/search" method="POST">
+                    {% csrf_token %} 
+                    <input type="search" name="search" class="search_input" placeholder="Search by first name">
+                    <button type="submit" class="search_button">Search</button>
+                </form>
+            </div>
+            <div class="search_container">
+                <div class="search_results">
+                    {{weddings.wedding_owner.fname}}
+                    {% if search %}
+                        Showing results for {{ search }}
+                    {% endif %}
+                    <hr class="hr_search">
+                    {% for user in users %}
+                        {% for spouse in user.wedding_created.all %}
+                        <p><a href = "/wedding/{{ user.id }}" class="search_links">{{user.fname}} {{user.lname}} & {{spouse.sfname}} {{spouse.slname}}</a><span class="search_location">{{spouse.ccity}}, {{spouse.cstate}}</span></p>
+                        <hr class="hr_search">
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

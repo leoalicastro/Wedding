@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <div class="wrapper">
+        <div class="header_home">
+            <h2 class="wese"><span class="wed">Wed</span><span class="se">Se</span></h2>
+        </div>
+        <div class="container">
+            <div class="log_container">
+                <div class="log_cont">
+                    {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li class="error_message">{% if message.tags %} {{ message }} {% endif %}</li>
+                                {% endfor %}
+                            </ul>
+                    {% endif %}
+                    <form class="login_form" action ="/login" method="POST">
+                        {% csrf_token %}
+                        <!-- <label for ="logemail">Email</label>
+                        <input type ="text" name="logemail">
+                        <p><label for ="logpassword">Password</label>
+                        <input type ="text" name="logpassword"></p> -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                            </div>
+                            <input name="logemail" class="form-control" placeholder="Email address" type="email">
+                        </div> 
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input name="logpassword" class="form-control" placeholder="Password" type="password">
+                        </div> 
+                            <button type="submit" class="log_button">Log In </button>
+                    </form>
+                    <p><a href="/"><button type="submit" class="log_button">Create account </button></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

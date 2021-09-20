@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your registry</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header_create_wed">
+                <h2 class="wese"><span class="wed">Wed</span><span class="se">Se</span></h2>
+                <div class="head_home_links">
+                    <a href="/my_account/{{this_user.id}}" class="index_link">Edit my account</a>
+                    {% if wedding_complete %}
+                        <a href="/wedding/{{ this_user.id }}" class="index_link">My wedding</a>
+                    {% else %}
+                        <a href="/create_wedding" class="index_link">Create wedding</a>
+                    {% endif %}
+                    <a href="/logout" class="index_link">Logout</a>
+                </div>
+            </div>
+            <div class="reg_container">
+                <div class="create_wed">
+                    <h2 class="create_reg_title">Create your registry funds!</h2>
+                    <form class="create_reg_form" action ="/add_registry/{{this_user.id}}" method="POST">
+                        {% csrf_token %}
+                        <label for ="funame" class="cr_label">Fund name</label>
+                        <br><input type ="text" name="funame" class="cw_input" required>
+                        <p><label for ="goal" class="cr_label">Goal</label>
+                        <br><input type ="number" name="goal" class="cw_input" required>
+                        <input type="hidden" name="remaining_balance">
+                        <input type="hidden" name="registry_owner">
+                        <p><button class="next_button_reg">Go to my wedding site!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,566 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper{
+    width: 100%;
+}
+
+.container{
+    width: 100%;
+}
+
+.dheader{
+    margin-left: 15px;
+    padding-top: 20px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+}
+
+button{
+    cursor: pointer;
+}
+
+.title{
+    margin-top: 7px;
+    text-align: center;
+    font-family: 'Darleston', 'Papyrus', 'sans-serif';
+}
+
+.links{
+    font-family: 'Darleston', 'Papyrus', 'sans-serif';
+    text-align: center;
+    word-spacing: 75px;
+}
+
+a{
+    color: black;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.weddingimg{
+    margin-top: 15px;
+    width: 100%;
+}
+
+.name{
+    font-family: 'Darleston', 'Papyrus', 'sans-serif';
+    margin-top: 50px;
+    text-align: center;
+
+}
+
+.and{
+    font-family: 'Darleston', 'Papyrus', 'sans-serif';
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.pspace{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.date{
+    font-family: 'Darleston', 'Papyrus', 'sans-serif';
+    margin-top: 50px;
+    text-align: center;
+}
+
+.location{
+    font-family: 'Darleston', 'Papyrus', 'sans-serif';
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.footer_links{
+    font-size: 14px;
+    margin-left: 15px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.logout{
+    color: gray;
+    margin-right: 15px;
+}
+
+.home{
+    color:grey
+}
+
+.recep_ceremony{
+    margin-top: 75px;
+    width: 100%;
+    height: 400px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.ceremony{
+    margin-top: 50px;
+    margin: 0px auto;
+    width: 21%;
+    display: inline-block;
+}
+
+.reception{
+    margin-left: 100px;
+    width: 21%;
+    display: inline-block;
+}
+
+.detailimg{
+    width: 100px
+}
+
+.detail_font{
+    font-size: 19px;
+}
+
+.hr{
+    margin-top: 15px;
+}
+
+.registry_container{
+    text-align:center;
+    width:100%;
+    min-height: 510px;
+    background-color: #76B7BF;
+    align-content: center;
+    align-items: center;
+}
+
+.registry{
+    border-left: 5px;
+    border-right: 5px;
+    width: 350px;
+    min-height: 510px;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    grid-template-areas: "reg_blocks";
+    background-color: white;
+    /* margin-top: 25px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 100px; */
+}
+
+.reg_blocks{
+    margin: 2px;
+    width:350px;
+    height:300px;
+    grid-area: "reg_blocks";
+    /* margin-top: 20px;
+    margin-left: 10px;
+    padding-left: 2;
+    margin: 0px auto;
+    width: 20%;
+    display: inline-block; */
+}
+
+.funame{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.contribute_button{
+    background-color: #76B7BF;
+    border: none;
+    color: white;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.hr_below{
+    margin-top: 50px;
+}
+
+.add_fund_button{
+    background-color: #76B7BF;
+    border: none;
+    color: white;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.post_container{
+    background-color: #76B7BF;
+    width: 100%;
+    min-height: 500px;
+    text-align: center;
+    line-height: 24px;
+
+}
+
+.posts{
+    border-left: 5px;
+    border-right: 5px;
+    width: 350px;
+    min-height: 510px;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    grid-template-areas: "post_blocks";
+    background-color: white;
+}
+
+.post_blocks{
+    margin: 2px;
+    width:350px;
+    grid-area: "post_blocks";
+}
+
+.post_button{
+    background-color: #76B7BF;
+    border: none;
+    color: white;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.remaining_balance{
+    color: red;
+}
+
+.no_balance{
+    color: green;
+}
+
+.post_input{
+    width: 300px;
+    height: 75px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: vertical;
+    }
+
+.wed{
+    color: #123C69;
+}
+
+.se{
+    color: white;
+}
+
+.header_home{
+    display: inline-block;
+    width: 100%;
+    height: 37px;
+    padding-left: 8px;
+    background-color: #79b9e4
+}
+
+.wese{
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.head_home_links{
+    float: right;
+    margin-top: 8px;
+    margin-right: 15px;
+}
+
+.home_link{
+    color: white;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.index_link{
+    color: white;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.search{
+    margin-top: 25px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.search_button{
+    background-color: #123C69;
+    color: white;
+    padding: 1px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.search_input{
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: vertical;
+    padding: 6px;
+}
+
+.search_container{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.search_results{
+    display: inline-block;
+    margin: 0 auto;
+    padding: 3px;
+    margin-bottom: 100px;
+}
+
+.hr_search{
+    width:610px;
+}
+
+.search_links{
+    color: #123C69;
+    margin-left: 10px;
+    margin-right: 245px;
+}
+
+.search_location{
+    text-align: right;
+}
+
+.find_couple_title{
+    color: #123C69;
+}
+
+.error_message{
+    color: red;
+}
+
+.log_button{
+    background-color: #123C69;
+    color: white;
+    padding: 1px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-top: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.ref_button{
+    background-color: #123C69;
+    color: white;
+    padding: 1px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-top: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.log_container{
+    width: 100%;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.log_cont{
+    display: inline-block;
+    margin: 0 auto;
+    padding: 3px;
+    margin-bottom: 100px;
+}
+
+.poster{
+    font-weight: bold;
+}
+
+.header_create_wed{
+    display: inline-block;
+    width: 100%;
+    height: 37px;
+    padding-left: 8px;
+    background-color: #79b9e4;
+    margin-bottom: 15px
+}
+
+.welcome_name{
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.cw_input{
+    margin-right: 40px;
+}
+
+.create_wed_container{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 24px;
+}
+
+.create_wed_form{
+    margin-top: 25px;
+    margin-left: 45px;
+}
+
+.create_wed{
+    text-align: left;
+    width: 500px;
+    height: 100%;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    grid-template-areas: "create_wed";
+    background-color: white;
+}
+
+.desc_input{
+    width: 300px;
+    height: 100px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: vertical;
+}
+
+.cw_input{
+    width: 300px;
+    padding: 6px;
+}
+
+.next_button{
+    background-color: #76B7BF;
+    border: none;
+    color: white;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 300px;
+    cursor: pointer;
+
+}
+
+.add_wedding_title, .create_reg_title{
+    color: #123C69;
+}
+
+.no_link{
+    color: gray;
+}
+
+.reg_container{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 24px;
+}
+
+.create_reg_form{
+    margin-top: 25px;
+    margin-left: 45px;
+}
+
+.create_reg{
+    text-align: left;
+    width: 500px;
+    height: 100%;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    grid-template-areas: "create_wed";
+    background-color: white;
+}
+
+.next_button_reg, .contribute_next_button{
+    background-color: #76B7BF;
+    border: none;
+    color: white;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 320px;
+    height:30px;
+    cursor: pointer;
+    margin-top: 5px;
+
+}
+
+.cr_label{
+    font-size: 17px;
+}
+
+.contribute_title{
+    color: #123C69;
+    margin-bottom: 3px; 
+}
+
+.contribute_text{
+    font-size: 18px;
+}
+
+.message_input{
+    width: 320px;
+    height: 100px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: vertical;
+}
+
+.success_container{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 24px;
+
+}
+
+.success_text{
+    color: #123C69;
+    font-size: 18px;
+}
+
+.wedding_desc{
+    font-style:italic;
+    margin-top: 40px;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My account</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <!-- <div class="container"> -->
+    <!-- <div class="card bg-light"> -->
+        <div class="header_home">
+            <h2 class="wese"><span class="wed">Wed</span><span class="se">Se</span></h2>
+            <div class="head_home_links">
+                <a href="/home" class="home_link">Find a wedding</a>
+                    {% if wedding_complete %}
+                        <a href="/wedding/{{ this_user.id }}" class="home_link">My wedding</a>
+                    {% else %}
+                        <a href="/create_wedding" class="home_link">Create wedding</a>
+                    {% endif %}
+                <a href="/logout" class="home_link">Logout</a>
+            </div>
+        </div>
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <h4 class="card-title mt-3 text-center">Edit your account</h4>
+        <p class="divider-text">
+        </p>
+        {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li class="error_message">{% if message.tags %} {{ message }} {% endif %}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+        <form action="/edit_account/{{ this_user.id }}" method="POST">
+            {% csrf_token %}
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+            <input name="fname" class="form-control" value="{{this_user.fname}}" type="text">
+        </div> <!-- form-group// -->
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+            <input name="lname" class="form-control" value="{{this_user.lname}}" type="text">
+        </div>
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+            </div>
+            <input name="email" class="form-control" value="{{this_user.email}}" type="email">
+        </div> <!-- form-group// -->
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+            </div>
+        </div> <!-- form-group end.// -->
+                                   
+        <div class="form-group">
+            <button type="submit" class="log_button"> Update </button>
+        </div> <!-- form-group// -->
+    </form>
+    </article>
+    </div> <!-- card.// -->
+    
+    </div> 
+    <!--container end.//-->
+    
+    <br><br>
+    </div>
+    <br><br>
+    </article>
+</body>
+</html>

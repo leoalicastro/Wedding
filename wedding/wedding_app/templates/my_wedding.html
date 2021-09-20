@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My wedding</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header_home">
+                <h2 class="wese"><span class="wed">Wed</span><span class="se">Se</span></h2>
+                <div class="head_home_links">
+                    <a href="/my_account/{{this_user.id}}" class="home_link">Edit my account</a>
+                        {% if wedding_complete %}
+                            <a href="/wedding/{{ this_user.id }}" class="home_link">My wedding</a>
+                        {% endif %}
+                    <a href="/logout" class="home_link">Logout</a>
+                </div>
+            </div>
+            
+            <div class="create_wed_container">
+                <div class="create_wed">
+                    <h2 class="add_wedding_title">Edit wedding</h2>
+                    {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                        <li>{% if message.tags %} {{ message }} {% endif %}</li>
+                                    {% endfor %}
+                                </ul>
+                        {% endif %}
+                    <form class="create_wed_form" action ="/edit_wedding/{{item.id}}/{{this_user.id}}" method="POST">
+                        {% csrf_token %}
+                        <label for ="sfname" class="cw_label">Spouse's First name</label>
+                        <br><input type ="text" name="sfname" class="cw_input" value = "{{item.sfname}}" required>
+                        <p><label for ="slname" class="cw_label">Spouse's Last name</label>
+                        <br><input type ="text" class="cw_input" name="slname" value = "{{item.slname}}" required></p>
+                        <p><label for ="cvenue" class="cw_label">Ceremony Venue</label>
+                        <br><input type ="text" class="cw_input" name="cvenue"  value = "{{item.cvenue}}" required></p>
+                        <p><label for ="caddress" class="cw_label">Ceremony Address</label>
+                        <br><input type ="text" class="cw_input" name="caddress" value = "{{item.caddress}}" required></p>
+                        <p><label for ="ccity" class="cw_label">Ceremony City</label>
+                        <br><input type ="text" class="cw_input" name="ccity" value = "{{item.ccity}}" required></p>
+                        <p><label for ="cstate" class="cw_label" value = "{{item.cstate}}" >Ceremony State</label>
+                            <br><select class="cw_input" name ="cstate">
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select></p>
+                        <p><label for ="czip" class="cw_label">Ceremony Zip code</label>
+                        <br><input type ="text" class="cw_input" name="czip" value = "{{item.czip}}" required></p>
+                        <p><label for ="cdate" class="cw_label">Ceremony Date</label>
+                        <br><input type ="date" class="cw_input" name="cdate" value = "{{item.cdate}}" required></p>
+                        <p><label for ="ctime" class="cw_label">Ceremony Time</label>
+                        <br><input type ="time" class="cw_input" name="ctime" value = "{{item.ctime}}" required></p>
+                        <p><label for ="rvenue" class="cw_label">Reception Venue</label>
+                        <br><input type ="text" class="cw_input" name="rvenue" value = "{{item.rvenue}}" required></p>
+                        <p><label for ="raddress" class="cw_label">Reception Address</label>
+                        <br><input type ="text" class="cw_input" name="raddress" value = "{{item.raddress}}" required></p>
+                        <p><label for ="rcity" class="cw_label">Reception City</label>
+                        <br><input type ="text" class="cw_input" name="rcity" value = "{{item.rcity}}" required></p>
+                        <p><label for ="rstate" class="cw_label">Reception State</label>
+                            <br><select class="cw_input" name = "rstate">
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select></p>
+                        <p><label for ="rzip" class="cw_label">Receptiom Zip code</label>
+                        <br><input type ="text" class="cw_input" name="rzip" value = "{{item.rzip}}" required></p>
+                        <p><label for ="rdate" class="cw_label">Reception Date</label>
+                        <br><input type ="date" class="cw_input" name="rdate" value = "{{item.rdate}}" required></p>
+                        <p><label for ="rtime" class="cw_label">Reception Time</label>
+                        <br><input type ="time" class="cw_input" name="rtime" value = "{{item.rtime}}" required></p>
+                        <p><label for ="description" class="cw_label">Description</label>
+                        <br><textarea name="description" class="desc_input">{{item.description}}</textarea>
+                        <br><input type="hidden" name="wedding_owner">
+                        <p><button class="next_button">Update</button></p>
+                </form>
+                <p><a href="/delete_wedding/{{item.id}}"><button class="next_button">Delete my wedding</button></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
